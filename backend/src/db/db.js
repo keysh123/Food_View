@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
-// KXVJiZPq9pkpqKHi
-// mongodb+srv://admin:KXVJiZPq9pkpqKHi@cluster0.nmryusq.mongodb.net/
+
 const connectToDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://admin:KXVJiZPq9pkpqKHi@cluster0.nmryusq.mongodb.net/food_view"
+      process.env.MONGO_URI
     );
      console.log("connected");
   } catch (err) {

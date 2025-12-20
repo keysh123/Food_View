@@ -1,4 +1,6 @@
+
 const app=require('./src/app')
+
 
 app.get("/",(req,res)=>{
     res.send('Hello from server');
