@@ -1,16 +1,22 @@
 import React from 'react'
 import { Routes , Route } from 'react-router-dom'
+import RegisterUser from './pages/RegisterUser'
+import LoginUser from './pages/LoginUser'
+import RegisterFoodPartner from './pages/RegisterFoodPartner'
+import LoginFoodPartner from './pages/LoginFoodPartner'
 
 const App = () => {
   return (
     <>
+    <div className='h-screen flex items-center justify-center'>
     <Routes>
-      <Route path='/user/register' element={<div>User Registration Page</div>} />
-      <Route path='/user/login' element={<div>User Login Page</div>} />
+      <Route path='/user/register' element={<RegisterUser/>} />
+      <Route path='/user/login' element={<LoginUser/>} />
       <Route path='/' element={<div>Home Page</div>} />
-      <Route path='/foodPartner/register' element={<div>Food Partner Registration Page</div>} />
-      <Route path='/foodPartner/login' element={<div>Food Partner Login Page</div>} />
+      <Route path='/foodPartner/register' element={<RegisterFoodPartner/>} />
+      <Route path='/foodPartner/login' element={<LoginFoodPartner/>} />
     </Routes>
+    </div>
 
     </>
   )
