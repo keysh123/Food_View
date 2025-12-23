@@ -2,6 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LoginUser = () => {
+  const [data,setData] = {
+    email : "",
+    password: ""
+  }
+  const handleChange = async(e) => {
+    setData({...data,[e.target.name]:e.target.value})
+  }
   return (
     <div className="bg-white w-full max-w-sm p-8 rounded-xl border border-gray-300">
       
@@ -21,13 +28,20 @@ const LoginUser = () => {
 
       <form className="space-y-4">
         <input
+        
           type="email"
+          name="email"
+          value={data.email}
+          onChange={handleChange}
           placeholder="Email"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
           focus:outline-none focus:ring-1 focus:ring-black"
         />
 
         <input
+          name="password"
+          value={data.password}
+          onChange={handleChange}
           type="password"
           placeholder="Password"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm

@@ -2,6 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RegisterFoodPartner = () => {
+  const [data, setData] = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    contactName: "",
+    address: "",
+    phoneNumber: "",
+    password: ""
+  };
+  const handleChange = async (e) => {
+    setData({...data, [e.target.name]: e.target.value});
+  };
   return (
     <div className="bg-white w-full max-w-sm p-8 rounded-xl border border-gray-300">
       
@@ -30,6 +42,9 @@ const RegisterFoodPartner = () => {
 
       <form className="space-y-4">
         <input
+          name="firstName"
+          value={data.firstName}
+          onChange={handleChange}
           type="text"
           placeholder="Firstname"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
@@ -37,6 +52,9 @@ const RegisterFoodPartner = () => {
         />
 
         <input
+          name="lastName"
+          value={data.lastName}
+          onChange={handleChange}
           type="text"
           placeholder="Lastname"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
@@ -44,6 +62,9 @@ const RegisterFoodPartner = () => {
         />
 
         <input
+          name="email"
+          value={data.email}
+          onChange={handleChange}
           type="email"
           placeholder="E-mail"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
@@ -51,6 +72,9 @@ const RegisterFoodPartner = () => {
         />
 
         <input
+          name="contactName"
+          value={data.contactName}
+          onChange={handleChange}
           type="text"
           placeholder="Contact Name"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
@@ -58,6 +82,9 @@ const RegisterFoodPartner = () => {
         />
 
         <input
+          name="address"
+          value={data.address}
+          onChange={handleChange}
           type="text"
           placeholder="Address"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
@@ -65,6 +92,9 @@ const RegisterFoodPartner = () => {
         />
 
         <input
+          name="phoneNumber"
+          value={data.phoneNumber}
+          onChange={handleChange}
           type="text"
           placeholder="Phone Number"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
@@ -72,6 +102,9 @@ const RegisterFoodPartner = () => {
         />
 
         <input
+          name="password"
+          value={data.password}
+          onChange={handleChange}
           type="password"
           placeholder="Password"
           className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
