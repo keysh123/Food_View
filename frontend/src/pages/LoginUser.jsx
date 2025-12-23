@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const LoginUser = () => {
-  const [data,setData] = {
+  const [data,setData] = useState({
     email : "",
     password: ""
-  }
+  })
   const handleChange = async(e) => {
     setData({...data,[e.target.name]:e.target.value})
   }

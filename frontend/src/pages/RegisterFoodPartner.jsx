@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RegisterFoodPartner = () => {
-  const [data, setData] = {
+  const [data, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -10,7 +10,7 @@ const RegisterFoodPartner = () => {
     address: "",
     phoneNumber: "",
     password: ""
-  };
+  });
   const handleChange = async (e) => {
     setData({...data, [e.target.name]: e.target.value});
   };
