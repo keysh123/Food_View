@@ -13,7 +13,7 @@ const createFood = async (req,res) => {
     const fileUploadResult = await uploadFile(req.file.buffer,uuid())
     // console.log(fileUploadResult);
     const foodItem =await  foodModel.create({
-        name,description , video:fileUploadResult.url , foodPartner:req.foodPartner._id
+        name, description , video:fileUploadResult.url , foodPartner:req.foodPartner._id
 
     })  
     res.status(201).json({

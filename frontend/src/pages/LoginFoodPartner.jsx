@@ -9,6 +9,23 @@ const LoginFoodPartner = () => {
   const handleChange = async (e) => {
     setData({...data, [e.target.name]: e.target.value});
   };
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(data);
+    const response = await fetch("http://localhost:3000/api/auth/foodPartner/login", {
+      method: "POST",
+       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+  };
   return (
     <div className="bg-white w-full max-w-sm p-8 rounded-xl border border-gray-300">
       
@@ -26,7 +43,7 @@ const LoginFoodPartner = () => {
         Access your restaurant dashboard
       </p>
 
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <input
           name="email"
           value={data.email}
