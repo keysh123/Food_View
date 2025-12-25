@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const UserScreen = () => {
   const [items, setItems] = useState([]);
@@ -10,7 +11,7 @@ const UserScreen = () => {
     });
     const data = await result.json();
     console.log(data);
-    
+
     setItems(data.foodItems);
   };
 
@@ -22,15 +23,10 @@ const UserScreen = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       {/* Mobile frame */}
       <div className="w-[360px] h-[720px] bg-black rounded-[30px] overflow-hidden border border-gray-300">
-        
         {/* Reel container */}
         <div className="h-full w-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide">
-          
           {items.map((item) => (
-            <div
-              key={item._id}
-              className="relative h-full w-full snap-start"
-            >
+            <div key={item._id} className="relative h-full w-full snap-start">
               {/* Video */}
               <video
                 src={item.video}
@@ -57,19 +53,17 @@ const UserScreen = () => {
 
               {/* Bottom info */}
               <div className="absolute bottom-0 left-0 w-full p-4 text-white bg-gradient-to-t from-black/70 to-transparent">
-                <h2 className="text-base font-semibold">
-                  {item.name}
-                </h2>
-                <p className="text-sm text-gray-300 mt-1">
-                  {item.description}
-                </p>
-                <p className="text-xs text-gray-400 mt-2">
-                  @{item.foodPartner?.name || "Food Partner"}
-                </p>
+                <h2 className="text-base font-semibold">{item.name}</h2>
+                <p className="text-sm text-gray-300 mt-1">{item.description}</p>
+                <Link
+                  to={`/food-partner/${item.foodPartner?._id}`}
+                  className="text-xs text-gray-300 mt-2 inline-block hover:underline"
+                >
+                  @{item.foodPartner?.fullName || "Food Partner"}
+                </Link>
               </div>
             </div>
           ))}
-
         </div>
       </div>
     </div>

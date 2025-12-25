@@ -1,4 +1,5 @@
 const foodModel = require('../models/food.model')
+const foodPartnerModel = require('../models/foodpartner.model')
 const {uploadFile} = require('../services/storage.service')
 // const {v4 : uuid} = require("uuid")
 
@@ -24,14 +25,25 @@ const createFood = async (req,res) => {
 }
 
 const getFoodItems = async (req,res) => {
-    const foodItems = await foodModel.find({})
+    const foodItems = await foodModel.find({}).populate('foodPartner','fullName email')
     res.status(200).json({
         message : "Food Items fetched successfully",
         foodItems
     })
 }
+const getFoodPartnerData = async (req,res) => {
+    const foodPartnerId = req.params.id;
+    const foodPartnerItems = await foodModel.find({foodPartner:foodPartnerId})
+    const foodPartner = await foodPartnerModel.findById(foodPartnerId).select('-password')
+    res.status(200).json({
+        message : "Food Partner data fetched successfully",
+        foodPartner,
+        foodItems:foodPartnerItems
+    })
+}
 
 module.exports = {
     createFood,
-    getFoodItems
+    getFoodItems,
+    getFoodPartnerData
 }

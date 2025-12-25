@@ -1,6 +1,37 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 const FoodPartnerForm = () => {
+  const [data,setData]=useState({
+    name:"",
+    description:"",
+    video:null
+  })
+  const handleChange=async(e)=>{
+    const {name,value,files}=e.target;
+    if(name==="video"){
+      setData({...data,[name]:files[0]})
+    }else{
+      setData({...data,[name]:value})
+    }
+  }
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    const formData=new FormData();
+    formData.append("name",data.name);
+    formData.append("description",data.description);
+    formData.append("video",data.video);
+    const result=await fetch("http://localhost:3000/api/food",{
+      method:"POST",
+      credentials:"include",
+      body:formData
+    });
+    const resData=await result.json();
+    if(result.status==201){
+      toast.success("Food item added successfully!");
+      setData({name:"",description:"",video:null});
+    }
+    console.log(resData);
+  }
   return (
     <div className="bg-white w-full max-w-md p-8 rounded-xl border border-gray-300">
       
@@ -11,7 +42,7 @@ const FoodPartnerForm = () => {
         Enter details about the food item you want to list
       </p>
 
-      <form className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         
         {/* Food Name */}
         <div>
@@ -19,6 +50,9 @@ const FoodPartnerForm = () => {
             Food Name
           </label>
           <input
+            name="name"
+            onChange={handleChange}
+            value={data.name}
             type="text"
             placeholder="e.g. Margherita Pizza"
             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm
@@ -32,6 +66,9 @@ const FoodPartnerForm = () => {
             Description <span className="text-gray-400">(optional)</span>
           </label>
           <textarea
+            name="description"
+            onChange={handleChange}
+            value={data.description}
             rows="3"
             placeholder="Short description about the food"
             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm resize-none
@@ -45,6 +82,9 @@ const FoodPartnerForm = () => {
             Food Video
           </label>
           <input
+            name="video"
+            onChange={handleChange}
+            // value={data.video}
             type="file"
             accept="video/*"
             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm

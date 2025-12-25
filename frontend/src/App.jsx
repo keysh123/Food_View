@@ -8,6 +8,7 @@ import Home from './pages/Home'
   import { ToastContainer, toast } from 'react-toastify';
 import FoodPartnerForm from './pages/FoodPartnerForm'
 import UserScreen from './pages/UserScreen'
+import FoodPartnerProfile from './pages/FoodPartnerProfile'
 const App = () => {
   return (
     <>
@@ -20,6 +21,11 @@ const App = () => {
       <Route path='/foodPartner/register' element={<RegisterFoodPartner/>} />
       <Route path='/foodPartner/login' element={<LoginFoodPartner/>} />
       <Route path='/foodPartner/create' element={<FoodPartnerForm/>} />
+      <Route
+  path="/food-partner/:id"
+  element={<FoodPartnerProfile />}
+/>
+
     </Routes>
     <ToastContainer/>
     </div>
